@@ -189,7 +189,7 @@ class SidebarConfig:
                         st.session_state.agent = ChatAgent.from_local_storage(vector_index=st.session_state.vector_index,
                                                                                 system_prompt=system_prompt)
                     else:
-                        st.session_state.agent = MainChatConfig().initiate_chat_agent(system_prompt=system_prompt)
+                        st.session_state.agent = MainChatConfig(config_file_path=st.secrets["CONFIG_FILE_PATH"]).initiate_chat_agent(system_prompt=system_prompt)
                 st.success("Successfully updated chatbot prompt!")
 
     def get_existing_default_prompts(self):
@@ -215,6 +215,6 @@ class SidebarConfig:
         )
 
 if __name__ == '__main__':
-    MainChatConfig(config_file_path=os.getenv("CONFIG_FILE_PATH"))
+    MainChatConfig(config_file_path=st.secrets["CONFIG_FILE_PATH"])
     
     SidebarConfig()

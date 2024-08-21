@@ -1,6 +1,7 @@
 from os import getenv
 from typing import Optional
 
+import streamlit as st
 from llama_index.llms.azure_openai import AzureOpenAI
 from llama_index.llms.huggingface_api import HuggingFaceInferenceAPI
 from llama_index.llms.openai import OpenAI
@@ -65,10 +66,10 @@ class AzureOpenAIMixin:
             ) 
 
         return AzureOpenAI(
-            engine=getenv(env_variables['model_engine']),
-            api_key=getenv(env_variables['api_key']),
-            api_version=getenv(env_variables['api_version']),
-            azure_endpoint=getenv(env_variables['model_endpoint']),
+            engine=st.secrets[env_variables['model_engine']],
+            api_key=st.secrets[env_variables['api_key']],
+            api_version=st.secrets[env_variables['api_version']],
+            azure_endpoint=st.secrets[env_variables['model_endpoint']],
             temperature=temperature,
             stream=stream,
             max_retries=max_retries,
@@ -107,9 +108,9 @@ class OpenAIMixin:
             ) 
 
         return OpenAI(
-            api_key=getenv(env_variables['api_key']),
-            api_base=getenv(env_variables['api_base']),
-            api_version=getenv(env_variables['api_version']),
+            api_key=st.secrets[env_variables['api_key']],
+            api_base=st.secrets[env_variables['api_base']],
+            api_version=st.secrets[env_variables['api_version']],
             temperature=temperature,
             stream=stream,
             max_retries=max_retries,
@@ -147,11 +148,11 @@ class VertexAIMixin:
             ) 
 
         credentials = {
-            "project_id": getenv(env_variables['project_id']),
-            "api_key": getenv(env_variables['api_key']),
+            "project_id": st.secrets[env_variables['project_id']],
+            "api_key": st.secrets[env_variables['api_key']],
         }
         return Vertex(
-            model=getenv(env_variables['api_base']),
+            model=st.secrets[env_variables['api_base']],
             project=credentials['project_id'],
             credentials=credentials,
             temperature=temperature,
@@ -190,7 +191,7 @@ class HuggingFaceMixin:
             ) 
 
         return HuggingFaceInferenceAPI(
-            model_name=getenv(env_variables['api_base']),
+            model_name=st.secrets[env_variables['api_base']],
             temperature=temperature,
             stream=stream,
             max_retries=max_retries,

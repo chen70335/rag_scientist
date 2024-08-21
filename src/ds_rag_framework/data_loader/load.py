@@ -6,6 +6,7 @@ from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
+import streamlit as st
 from llama_index.core import Document, SimpleDirectoryReader
 from llama_parse import LlamaParse
 
@@ -227,7 +228,7 @@ class PDFDataLoader:
         Raises:
             ValueError: If both `input_dir` and `input_files` are None.
         """
-        if getenv("LLAMA_CLOUD_API_KEY") is None:
+        if st.secrets["LLAMA_CLOUD_API_KEY"] is None:
             raise ValueError(
                 "Please set the LLAMA_CLOUD_API_KEY \
                              environment variable to use LlamaParse."
