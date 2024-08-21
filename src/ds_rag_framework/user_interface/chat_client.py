@@ -21,6 +21,7 @@ class MainChatConfig:
         config_file_path: str = None
     ) -> None:
         # remove deploy button
+        self.config_file_path = config_file_path if os.path.exists(config_file_path) else None
         st.markdown(
             r"""
             <script>
@@ -35,11 +36,7 @@ class MainChatConfig:
             </style>
             """, unsafe_allow_html=True
         )
-        if config_file_path:
-            if not os.path.exists(config_file_path):
-                raise FileNotFoundError(f"Config file {config_file_path} does not exist.")
-            self.config_file_path = config_file_path
-            self.initiate_app()
+
 
 
 
@@ -189,7 +186,7 @@ class SidebarConfig:
                         st.session_state.agent = ChatAgent.from_local_storage(vector_index=st.session_state.vector_index,
                                                                                 system_prompt=system_prompt)
                     else:
-                        st.session_state.agent = MainChatConfig(config_file_path=st.secrets["CONFIG_FILE_PATH"]).initiate_chat_agent(system_prompt=system_prompt)
+                        st.session_state.agent = st.session_state.main_chat_config.initiate_chat_agent(system_prompt=system_prompt)
                 st.success("Successfully updated chatbot prompt!")
 
     def get_existing_default_prompts(self):
@@ -215,6 +212,7 @@ class SidebarConfig:
         )
 
 if __name__ == '__main__':
-    MainChatConfig(config_file_path=st.secrets["CONFIG_FILE_PATH"])
+    st.session_state.main_chat_config = MainChatConfig(config_file_path=st.secrets["CONFIG_FILE_PATH"])
+    st.session_state.main_chat_config.initiate_app()
     
     SidebarConfig()
