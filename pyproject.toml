@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{from = "src", include = "ds_rag_framework"}]
 
 [tool.poetry.dependencies]
-python = "3.10.14"
+python = "^3.10.14"
 llama-index = "^0.10.54"
 python-dotenv = "^1.0.0"
 openai = ">=1.1.0"
