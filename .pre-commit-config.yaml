@@ -1,0 +1,19 @@
+fail_fast: true
+
+repos:
+  - repo: https://github.com/pycqa/isort
+    rev: "5.11.5"
+    hooks:
+      - id: isort
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: "v1.2.0"
+    hooks:
+      - id: mypy
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.7
+    hooks:
+      - id: ruff
+        types_or: [ python, pyi]
+        args: ["--fix"]

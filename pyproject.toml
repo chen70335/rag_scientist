@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "ds_rag_framework"
+version = "0.1.0"
+description = "Project to create inhouse chatbot framework"
+authors = ["Nathan Chen <nathan.chen@healthedge.com>"]
+readme = "README.md"
+packages = [{from = "src", include = "ds_rag_framework"}]
+
+[tool.poetry.dependencies]
+python = "3.10.8"
+llama-index = "^0.10.54"
+python-dotenv = "^1.0.0"
+openai = ">=1.1.0"
+pyarrow = "^15.0.2"
+sentence-transformers = "^2.2.2"
+flask = "^3.0.0"
+langchain-experimental = "^0.0.24"
+pypdf = "^4.0.1"
+azure-search-documents = "^11.4.0b8"
+azure-identity = "^1.15.0"
+azure-functions = "^1.17.0"
+pandas = "^2.1.1"
+bs4 = "^0.0.2"
+llama-index-llms-azure-openai = "^0.1.8"
+llama-index-embeddings-langchain = "^0.1.2"
+llama-index-vector-stores-azureaisearch = "^0.1.9"
+llama-index-embeddings-huggingface = "^0.2.2"
+streamlit = "^1.36.0"
+llama-index-llms-openai = "^0.1.25"
+llama-index-llms-palm = "^0.1.5"
+llama-index-vector-stores-vertexaivectorsearch = "^0.0.1"
+llama-index-llms-vertex = "^0.2.1"
+llama-parse = "^0.4.8"
+llama-index-llms-huggingface-api = "^0.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.5"
+pre-commit = "^3.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

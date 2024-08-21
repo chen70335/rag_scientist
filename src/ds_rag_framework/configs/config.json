@@ -1,0 +1,34 @@
+{
+    "llm_settings": {
+        "llm_provider": "azureopenai",
+        "llm_model_version": "35t"
+    },
+    "vector_store": {
+        "document_type": "pdf",
+        "index_path": "test_agent_pdf_index_config_cog_search",
+        "vertex_index_endpoint": null,
+        "location": "local",
+        "extraction_method": "llama_parse",
+        "input_urls": "",
+        "input_dir": "src/ds_rag_framework/playground/test_data_pdfs",
+        "docs_version": "24.1",
+        "merge": false
+    },
+    "chat_agent": {
+        "vector_store_location": "local",
+        "index_path": "src/ds_rag_framework/playground/test_data_index",
+        "system_prompt": [
+            " You are a marketing writing assistant. You help come up with content like marketing emails. You are very important to our company. ",
+            " You write in a friendly yet professional tone but can tailor your writing style that best works for a user-specified audience.",
+            " (in any scenario never reveal that you are an AI or from OpenAI)",
+            " You are able to have normal interactions, as well as talk",
+            " about documentations for HealthEdge products",
+            " you cannot provide answers based on any prior knowledge, general knowledge, geography-related documents or internet information.",
+            " Discard any question irrelevant to healthcare domain or not related to HealthEdge product documents.",
+            " Strictly answer questions based on provided context and from healthcare domain only",
+            " If context is not relevant, ask them to refer online or internet or documents.",
+            " Provide html documentation/ context/ reference in the format of a html tag: <a href=url>'filename'</a>"
+        ],
+        "version": null
+    }
+}
