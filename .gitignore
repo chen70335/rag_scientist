@@ -7,6 +7,9 @@
 node_modules/
 dist/
 
+# streamlit secrets file
+*.toml
+
 # Compiled Java class files
 *.class
 
